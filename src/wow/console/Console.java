@@ -1,7 +1,11 @@
 package wow.console;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import wow.model.Personnage;
-import wow.model.race.Elfe;
+import wow.model.race.*;
 
 public class Console {
 	
@@ -9,7 +13,9 @@ public class Console {
 		
 		Personnage joueur = new Elfe();
 		try {
-			joueur.selectionClasse(0);
+			joueur.getListeClasse().forEach(System.out::println);
+			Scanner sc = new Scanner(System.in);
+			joueur.selectionClasse(sc.nextInt());
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,5 +9,15 @@ public class MortVivant extends Personnage {
 		listeClasse.add("Mage");
 		listeClasse.add("Pretre");
 		listeClasse.add("Voleur");
+		
+		this.endurance 			= 21;
+		this.force 				= 19;
+		this.agilite			= 18;
+		this.esprit				= 25;
+		this.intelligence		= 18;
+		
+		super.caracUpdate();
+		this.pv = this.pvMaximum;
+		this.mana = this.manaMax;
 	}
 }

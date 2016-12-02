@@ -1,5 +1,7 @@
 package wow.dao.classe;
 
+import wow.dao.Classe;
+
 public class Voleur implements Classe {
 
 	@Override

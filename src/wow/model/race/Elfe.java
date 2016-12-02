@@ -19,6 +19,6 @@ public class Elfe extends Personnage {
 		super.caracUpdate();
 		this.pv = this.pvMaximum;
 		this.mana = this.manaMax;
+		
 	}
-
 }

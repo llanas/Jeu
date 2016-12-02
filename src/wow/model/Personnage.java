@@ -3,7 +3,7 @@ package wow.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import wow.dao.classe.Classe;
+import wow.dao.Classe;
 
 public class Personnage {
 
@@ -47,6 +47,10 @@ public class Personnage {
 		this.puissanceSort							= ( (this.puissanceSort + this.intelligence ) / 2 );
 		this.critique								= ( (this.critique + this.agilite) / 4 );
 		
+	}
+	
+	public List<String> getListeClasse() {
+		return this.listeClasse;
 	}
 	
 	public Classe getClasse() {
