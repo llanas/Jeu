@@ -1,0 +1,16 @@
+Java API
+UDP / TCP
+
+
+
+DESIGN PATTER BUILDER!!!
+
+Hero
+-Attribut
+
+-getProfession()}
+
+Hero builder:
+- HeroBuilder(Profession String);
+- Appel de classes
+- Build(Hero hero) => retourne un hero
