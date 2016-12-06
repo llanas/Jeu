@@ -7,25 +7,23 @@ public class Case {
 	
 	private static int nombreCases = 0;
 	private int numero;
-	private int positionH, positionL;
+	private int position;
 
 	boolean b, d;
 	
 	public List<Case> listCase = new ArrayList<Case>();
 	
 	public Case(){
-		
-	}
-	
-	public Case(int h, int l) {
-
 		numero = nombreCases;
+		position = nombreCases;
 		nombreCases++;
-		this.positionH = h;
-		this.positionL = l;
 		this.listCase.add(this);
 	}
 	
+	public int getPosition() {
+		return position;
+	}
+
 	public int getNumero() {
 		return numero;
 	}
@@ -33,13 +31,13 @@ public class Case {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-
-	public int getPositionH() {
-		return positionH;
+	
+	public void setB() {
+		this.b = true;
 	}
-
-	public int getPositionL() {
-		return positionL;
+	
+	public void setD() {
+		this.d = true;
 	}
 
 	public StringBuilder afficher(){
@@ -53,9 +51,8 @@ public class Case {
 		if(!d){
 			c.append("|");
 		} else {
-			c.append(" ");
+			c.append(",");
 		}
 		return c;
 	}
-	
 }

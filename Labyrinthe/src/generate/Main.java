@@ -22,39 +22,39 @@ public class Main {
 		Random rand = new Random();
 		while(!testerLabyrinthe(taille)) {
 			int x = rand.nextInt(taille*taille);
-			System.out.println("Chiffre à trouver :               " + x);
+			System.out.println("Case à traiter    :               " + x);
 			int hauteur = (int) Math.floor(x/taille);
 			int largeur = (x - (hauteur * taille));
 			Case caseX = getCase(x, taille);
 			System.out.println("VALEUR            :               " + caseX.getNumero());
-			int y = taille*taille;
+			int y = 0;
 			Case caseY = new Case();
 			int test = rand.nextInt(2);
-			if( test == 0 && hauteur != taille-1) {
+			if( test == 0 && hauteur != taille-1 ) {
 				y = x + taille;
 				caseY = getCase(y, taille);
+				System.out.println("Case à comparer :                 " + caseY.getPosition());
+				System.out.println("VALEUR          :                 " + caseY.getNumero());
 				if(caseX.getNumero() != caseY.getNumero()) {
+					
 					comparerCase(caseX, caseY);
-					caseX.b = true;
+					caseX.setB();
 				}
-			} else if (test == 1 && largeur != taille-1) {
+			} else if (test == 1 && largeur != taille-1 ) {
 				y = x + 1;
 				caseY = getCase(y, taille);
+				System.out.println("Case à comparer :                 " + caseY.getPosition());
+				System.out.println("VALEUR          :                 " + caseY.getNumero());
 				if(caseX.getNumero() != caseY.getNumero()) {
+					
 					comparerCase(caseX, caseY);
-					caseX.d = true;
+					caseX.setD();
 				}
 			}
-			for(int ligne = 0 ; ligne < taille ; ligne++ ) {
-				for( int colone = 0 ; colone < taille ; colone++ ) {
-					System.out.print(labyrinthe.get(ligne).get(colone).afficher());
-				}
-				System.out.print("\n");
-			}
-			
 		}
 		System.out.println("                                    ");
 		System.out.println("            RESULTAT FINAL          ");
+		sautDeLigne(taille);
 		for(int ligne = 0 ; ligne < taille ; ligne++ ) {
 			for( int colone = 0 ; colone < taille ; colone++ ) {
 				System.out.print(labyrinthe.get(ligne).get(colone).afficher());
@@ -65,13 +65,15 @@ public class Main {
 	
 	public static void comparerCase(Case x, Case y) {
 		if( x.getNumero() < y.getNumero() ) {
-			System.out.println("La case " + y.getNumero() + " devient : " + x.getNumero());
-			y.setNumero(x.getNumero());
+			System.out.println("La case " + y.getPosition() + " devient : " + x.getNumero());
 			x.listCase.addAll(y.listCase);
+			x.listCase.forEach(p -> p.setNumero(x.getNumero()));
+			y.listCase = x.listCase;
 		} else {
-			System.out.println("La case " + x.getNumero() + " devient : " + y.getNumero());
-			x.setNumero(y.getNumero());
+			System.out.println("La case " + x.getPosition() + " devient : " + y.getNumero());
 			y.listCase.addAll(x.listCase);
+			y.listCase.forEach(p -> p.setNumero(y.getNumero()));
+			x.listCase = y.listCase;
 		}
 	}
 	
@@ -98,7 +100,7 @@ public class Main {
 		for(int h = 0 ; h < taille ; h++ ) {
 			List<Case> lignes = new ArrayList<Case>();
 			for( int l = 0 ; l < taille ; l++ ) {
-				lignes.add(new Case(h, l));
+				lignes.add(new Case());
 				System.out.print(lignes.get(l).afficher());
 			}
 			System.out.print("\n");
