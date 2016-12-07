@@ -11,6 +11,8 @@ public class Main {
 	
 	public static Map<Integer, List<Case>> labyrinthe = new HashMap<Integer, List<Case>>();
 
+	public static Map<Integer, List<Case>> chemins = new HashMap<Integer, List<Case>>();
+	
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
@@ -66,14 +68,20 @@ public class Main {
 	public static void comparerCase(Case x, Case y) {
 		if( x.getNumero() < y.getNumero() ) {
 			System.out.println("La case " + y.getPosition() + " devient : " + x.getNumero());
-			x.listCase.addAll(y.listCase);
-			x.listCase.forEach(p -> p.setNumero(x.getNumero()));
-			y.listCase = x.listCase;
+			chemins.get(x.getNumero()).addAll(chemins.get(y.getNumero()));
+			chemins.get(x.getNumero()).forEach(p -> p.setNumero(x.getNumero()));
+			chemins.remove(y);
+			/*y.listCase.addAll(x.listCase);
+			y.listCase.forEach(p -> p.setNumero(x.getNumero()));
+			x.listCase = y.listCase;*/
 		} else {
 			System.out.println("La case " + x.getPosition() + " devient : " + y.getNumero());
-			y.listCase.addAll(x.listCase);
-			y.listCase.forEach(p -> p.setNumero(y.getNumero()));
-			x.listCase = y.listCase;
+			chemins.get(y.getNumero()).addAll(chemins.get(x.getNumero()));
+			chemins.get(y.getNumero()).forEach(p -> p.setNumero(y.getNumero()));
+			chemins.remove(x);
+			/*x.listCase.addAll(y.listCase);
+			x.listCase.forEach(p -> p.setNumero(y.getNumero()));
+			y.listCase = x.listCase;*/
 		}
 	}
 	
@@ -100,7 +108,11 @@ public class Main {
 		for(int h = 0 ; h < taille ; h++ ) {
 			List<Case> lignes = new ArrayList<Case>();
 			for( int l = 0 ; l < taille ; l++ ) {
-				lignes.add(new Case());
+				Case caseCree = new Case();
+				List<Case> groupeChemin = new ArrayList<Case>();
+				lignes.add(caseCree);
+				groupeChemin.add(caseCree);
+				chemins.put(caseCree.getPosition(), groupeChemin);
 				System.out.print(lignes.get(l).afficher());
 			}
 			System.out.print("\n");
