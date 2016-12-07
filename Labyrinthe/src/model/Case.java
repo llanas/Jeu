@@ -1,23 +1,42 @@
-package generate;
-
-import java.util.ArrayList;
-import java.util.List;
+package model;
 
 public class Case {
 	
 	private static int nombreCases = 0;
 	private int numero;
 	private int position;
+	private int colonne;
+	private int ligne;
 
-	boolean b, d;
-	
-	public List<Case> listCase = new ArrayList<Case>();
+	private boolean b, d;
 	
 	public Case(){
-		numero = nombreCases;
-		position = nombreCases;
+		
+		
+	}
+	
+	public Case( int colonne, int ligne ) {
+		this.position = nombreCases;
+		this.numero = position;
 		nombreCases++;
-		this.listCase.add(this);
+		this.colonne = colonne;
+		this.ligne = ligne;
+	}
+	
+	public int getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
+	}
+
+	public int getLigne() {
+		return ligne;
+	}
+
+	public void setLigne(int ligne) {
+		this.ligne = ligne;
 	}
 	
 	public int getPosition() {
