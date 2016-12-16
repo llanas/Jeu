@@ -16,9 +16,8 @@ public class Case {
 	}
 	
 	public Case( int colonne, int ligne ) {
-		this.position = nombreCases;
+		this.position = nombreCases++;
 		this.numero = position;
-		nombreCases++;
 		this.colonne = colonne;
 		this.ligne = ligne;
 	}
