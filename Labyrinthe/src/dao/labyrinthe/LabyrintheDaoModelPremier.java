@@ -29,6 +29,8 @@ public class LabyrintheDaoModelPremier implements LabyrintheDao {
 				Case caseY = labyrinthe.getCase( positionCaseX + labyrinthe.getTaille() );
 				if(caseX.getNumero() != caseY.getNumero()){ 
 					comparerCase(caseX, caseY);
+					caseX.setAdj(caseY);
+					caseY.setAdj(caseX);
 					caseX.setB();
 				}
 			} else {
@@ -36,6 +38,8 @@ public class LabyrintheDaoModelPremier implements LabyrintheDao {
 				Case caseY = labyrinthe.getCase( positionCaseX + 1 );
 				if (caseX.getNumero() != caseY.getNumero()) {
 					comparerCase(caseX, caseY);
+					caseX.setAdj(caseY);
+					caseY.setAdj(caseX);
 					caseX.setD();
 				}
 			}

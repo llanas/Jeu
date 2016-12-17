@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Case {
 	
 	private static int nombreCases = 0;
@@ -7,12 +10,12 @@ public class Case {
 	private int position;
 	private int colonne;
 	private int ligne;
+	private List<Case> adj;
 
 	private boolean b, d;
 	
 	public Case(){
-		
-		
+				
 	}
 	
 	public Case( int colonne, int ligne ) {
@@ -20,6 +23,7 @@ public class Case {
 		this.numero = position;
 		this.colonne = colonne;
 		this.ligne = ligne;
+		this.adj = new ArrayList<>();
 	}
 	
 	public int getColonne() {
@@ -56,6 +60,14 @@ public class Case {
 	
 	public void setD() {
 		this.d = true;
+	}
+	
+	public void setAdj(Case c) {
+		this.adj.add(c);
+	}
+	
+	public List<Case> getAdj() {
+		return this.adj;
 	}
 
 	public StringBuilder afficher(){

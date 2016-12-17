@@ -1,8 +1,11 @@
 package console;
+import java.util.List;
 import java.util.Scanner;
 
 import dao.DaoFactory;
 import dao.ModelPremierDaoFactory;
+import dao.Traitement;
+import model.Case;
 import model.Labyrinthe;
 
 public class Main {
@@ -13,7 +16,6 @@ public class Main {
 		long debut = System.currentTimeMillis();
 		System.out.println("Entrez la taille du labyrinthe : ");
 		int taille = sc.nextInt();
-		sc.close();
 		Labyrinthe labyrinthe = new Labyrinthe(taille);
 		DaoFactory daoFactory = new ModelPremierDaoFactory();
 		daoFactory.getLabyrintheDao().generateurChemin(labyrinthe);
@@ -22,6 +24,9 @@ public class Main {
 		labyrinthe.afficherLabyrinthe();
 		System.out.println("\n");
 		System.out.println((System.currentTimeMillis())-debut + " secondes d'executions");
+		Traitement t = new Traitement();
+		t.trouverSorti(labyrinthe).forEach(c -> System.out.print(c.getPosition()));
+		sc.close();
 	}
 
 }
