@@ -62,8 +62,16 @@ public class Case {
 		this.d = true;
 	}
 	
-	public void setAdj(Case c) {
+	public void setAdj(List<Case> adj) {
+		this.adj = adj;
+	}
+	
+	public void addAdj(Case c) {
 		this.adj.add(c);
+	}
+	
+	public void removeAdj(Case c) {
+		this.adj.remove(c);
 	}
 	
 	public List<Case> getAdj() {
